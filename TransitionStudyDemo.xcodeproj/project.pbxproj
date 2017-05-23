@@ -232,6 +232,7 @@
 				TargetAttributes = {
 					D05172741DA9EEC0003120DB = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = AVQ8S7662K;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -454,6 +455,7 @@
 			baseConfigurationReference = 69B447CEF98F53BE575D8326 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = AVQ8S7662K;
 				INFOPLIST_FILE = TransitionStudyDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zengfx.TransitionStudyDemo;
@@ -466,6 +468,7 @@
 			baseConfigurationReference = 7D25722B68A284792EF2042A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = AVQ8S7662K;
 				INFOPLIST_FILE = TransitionStudyDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = zengfx.TransitionStudyDemo;

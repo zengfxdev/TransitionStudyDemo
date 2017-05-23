@@ -477,7 +477,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 @property (nonatomic, copy) void(^animationBlock)(BOOL finished);
 
 @property (nonatomic, strong) NavigationInteractiveTransition *navT;
-
 @property (nonatomic,strong) UIScreenEdgePanGestureRecognizer *popRecognizer;
 
 @end
@@ -493,7 +492,17 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
 
 - (void)_commonInit
 {
+    UIGestureRecognizer *gesture = self.interactivePopGestureRecognizer;
+    gesture.enabled = NO;
+    UIView *gestureView = gesture.view;
     
+    _popRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] init];
+    _popRecognizer.delegate = self;
+    _popRecognizer.edges = UIRectEdgeLeft;           // 屏幕左侧边缘响应
+    [gestureView addGestureRecognizer:_popRecognizer];
+    
+    _navT = [[NavigationInteractiveTransition alloc] initWithViewController:self];
+    [_popRecognizer addTarget:_navT action:@selector(handleControllerPop:)];
 }
 
 #pragma mark - Overrides
@@ -548,18 +557,6 @@ __attribute((overloadable)) static inline UIViewController *RTSafeWrapViewContro
     [super setDelegate:self];
     [super setNavigationBarHidden:YES
                          animated:NO];
-    
-    UIGestureRecognizer *gesture = self.interactivePopGestureRecognizer;
-    gesture.enabled = NO;
-    UIView *gestureView = gesture.view;
-    
-    _popRecognizer = [[UIScreenEdgePanGestureRecognizer alloc] init];
-    _popRecognizer.delegate = self;
-    _popRecognizer.edges = UIRectEdgeLeft;           // 屏幕左侧边缘响应
-    [gestureView addGestureRecognizer:_popRecognizer];
-    
-    _navT = [[NavigationInteractiveTransition alloc] initWithViewController:self];
-    [_popRecognizer addTarget:_navT action:@selector(handleControllerPop:)];
 }
 
 - (UIViewController *)viewControllerForUnwindSegueAction:(SEL)action
